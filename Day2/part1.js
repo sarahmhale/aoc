@@ -3,36 +3,33 @@ let total = 0
 
 
 const totalChecksum = (values) => {
-  total= 0
-  let splitString = values.split("\t")
-  for (index in splitString) {
-    total += checksum(splitString[index])
-  }
-  return total
+  let thisTotal = 0
+  thisTotal += checksum(values.split("\t"))
+
+  return thisTotal
 
 }
 
 const checksum = (row) => {
-  let splitString = row.split("").map(Number)
-
+  let splitString = row.map(Number)
 
   let min = Math.min(...splitString)
   let max = Math.max(...splitString)
-  console.log("row: ", row)
-  console.log("max: ", max)
-  console.log("min: ", min)
-  console.log("between", (max - min))
-  console.log()
   return (max - min)
 }
 
 
-// assert.equal(totalChecksum("1012	1001\t339	581"), (2+1+6+7))
-// assert.equal(checksum("5195"), 8)
-// assert.equal(checksum("753"), 4)
-// assert.equal(checksum("2468"), 6)
+assert.equal(totalChecksum("737	1866	1565	1452"), 1129)
 
+var fs = require('fs'),
+    readline = require('readline');
 
-console.log("total: ", totalChecksum(
-"737	1866	1565	1452	1908	1874	232	1928	201	241	922	281	1651	1740	1012	1001\t339	581	41	127	331	133	51	131	129	95	499	527	518	435	508	494\t1014	575	1166	259	152	631	1152	1010	182	943	163	158	1037	1108	1092	887\t56	491	409	1263	1535	41	1431	1207	1393	700	1133	53	131	466	202	62\t632	403	118	352	253	672	711	135	116	665	724	780	159	133	90	100\t1580	85	1786	1613	1479	100	94	1856	546	76	1687	1769	1284	1422	1909	1548\t479	356	122	372	786	1853	979	116	530	123	1751	887	109	1997	160	1960\t446	771	72	728	109	369	300	746	86	910	566	792	616	84	338	57\t6599	2182	200	2097	4146	7155	7018	1815	1173	4695	201	7808	242	3627	222	7266\t1729	600	651	165	1780	2160	626	1215	149	179	1937	1423	156	129	634	458\t1378	121	146	437	1925	2692	130	557	2374	2538	2920	2791	156	317	139	541\t1631	176	1947	259	2014	153	268	752	2255	347	227	2270	2278	544	2379	349\t184	314	178	242	145	410	257	342	183	106	302	320	288	151	449	127\t175	5396	1852	4565	4775	665	4227	171	4887	181	2098	4408	2211	3884	2482	158\t1717	3629	244	258	281	3635	235	4148	3723	4272	3589	4557	4334	4145	3117	4510\t55	258	363	116	319	49	212	44	303	349	327	330	316	297	313	67"
-))
+var rd = readline.createInterface({
+    input: fs.createReadStream('./day2.txt'),
+    console: false
+});
+
+rd.on('line', function(line) {
+    total += totalChecksum(line)
+    console.log("total is: ", total)
+});
