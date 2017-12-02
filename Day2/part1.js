@@ -2,16 +2,8 @@ var assert = require('assert');
 let total = 0
 
 
-const totalChecksum = (values) => {
-  let thisTotal = 0
-  thisTotal += checksum(values.split("\t"))
-
-  return thisTotal
-
-}
-
 const checksum = (row) => {
-  let splitString = row.map(Number)
+  let splitString = row.split("\t").map(Number)
 
   let min = Math.min(...splitString)
   let max = Math.max(...splitString)
@@ -19,7 +11,7 @@ const checksum = (row) => {
 }
 
 
-assert.equal(totalChecksum("737	1866	1565	1452"), 1129)
+assert.equal(checksum("737	1866	1565	1452"), 1129)
 
 var fs = require('fs'),
     readline = require('readline');
@@ -30,6 +22,6 @@ var rd = readline.createInterface({
 });
 
 rd.on('line', function(line) {
-    total += totalChecksum(line)
+    total += checksum(line)
     console.log("total is: ", total)
 });
