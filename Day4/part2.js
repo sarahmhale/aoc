@@ -8,8 +8,8 @@ const findSimilar = (line) => {
       let word1 = String(line[i]).split('').sort().join('');
       let word2 = String(line[j]).split('').sort().join('')
 
-      if(word1 === word2)
-      return true
+      if (word1 === word2)
+        return true
 
     }
   }
