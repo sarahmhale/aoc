@@ -24,11 +24,11 @@ var rd = readline.createInterface({
   console: false
 });
 
-rd.on('line', function(line) {
+rd.on('line', (line) => {
   array[array.length] = parseInt(line)
 });
 
-rd.on('close', function() {
+rd.on('close', () => {
   takeStep()
   console.log(nrOfTimes)
 });
