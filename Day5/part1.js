@@ -26,7 +26,6 @@ var rd = readline.createInterface({
 
 rd.on('line', function(line) {
   array[array.length] = parseInt(line)
-
 });
 
 rd.on('close', function() {

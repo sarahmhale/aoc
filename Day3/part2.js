@@ -42,10 +42,10 @@ const createSpiralArray = (n) => {
   let timeToChange = 0
 
   /**
-  4 down
   1 right
   2 up
   3 left
+  4 down
   */
   rowIndex = Math.round(n / 2 - 1)
   colIndex = Math.round(n / 2 - 1)
